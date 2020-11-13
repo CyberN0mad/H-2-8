@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Map<String, String[]> Dictionary = new HashMap<>();
 
-        Dictionary.put("good", new String[]{"well", "nice", "super", "cool", "awesome", "awesome"});
+        Dictionary.put("good", new String[]{"well", "nice", "super", "cool", "awesome", "amazing"});
 
         Dictionary.put("bad", new String[]{"terrible", "nasty", "awful", "grim", "unacceptable"});
 
@@ -19,6 +19,8 @@ public class Main {
         Set<String> setKey = Dictionary.keySet();
         List<String> arrayListOfSynonyms = new ArrayList<>();
         Map<String, String[]> dictionary = new HashMap<>();
+
+
 
         for (String key : setKey) {
             Collections.addAll(arrayListOfSynonyms, Dictionary.get(key));
@@ -41,17 +43,27 @@ public class Main {
         }
         dictionary.putAll(Dictionary);
 
+        for (Map.Entry<String, String[]> item: Dictionary.entrySet()) {
+            System.out.println(item.getKey()+" - "+Arrays.toString(item.getValue()));
+        }
+
         do {
             Scanner scanner = new Scanner(System.in);
             Random random = new Random();
+            System.out.println("-----------------------------");
             System.out.println("Type a word for a synonyms: ");
-            System.out.println("(Hint - good,bad,hot,cold,beauty)");
+            //System.out.println("(Hint - good,bad,hot,cold,beauty)");
             String[] strings = dictionary.get(scanner.nextLine());
-            if (strings != null)
-                System.out.println(strings[random.nextInt(strings.length - 1)]);
-            else
-                System.out.println("No such word...");
+            if (strings != null) {
+                Random r = new Random();
+                int i = r.nextInt(strings.length);
+                System.out.println("your synonym is: " + strings[i]);
+            } else
+                System.out.println("There's no such word");
 
         } while (true);
+
+
+
     }
 }
